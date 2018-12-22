@@ -1,6 +1,7 @@
 package com.nasibov.productservice.controller;
 
 import com.nasibov.productservice.model.Product;
+import com.nasibov.productservice.model.Stock;
 import com.nasibov.productservice.repository.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,10 @@ public class ProductController {
 
     @PostMapping("/save")
     public void saveProduct(@RequestBody Product product) {
+        Stock stock = new Stock();
+        stock.setCount(product.getStock().getCount());
+        stock.setProduct(product);
+        product.setStock(stock);
         productRepository.save(product);
     }
 

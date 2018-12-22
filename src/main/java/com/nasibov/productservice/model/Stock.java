@@ -1,29 +1,40 @@
 package com.nasibov.productservice.model;
 
-import lombok.*;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @NonNull
-    @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sku")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-
-    @NonNull
-    @NotNull
     private int count;
+
+    public Stock() {
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

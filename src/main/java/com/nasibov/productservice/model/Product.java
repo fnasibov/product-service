@@ -1,38 +1,26 @@
 package com.nasibov.productservice.model;
 
-import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
-@Builder
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @NonNull
     @NotNull
     @Column(unique = true)
     private String sku;
 
     @NotNull
-    @NonNull
     private String name;
 
     @NotNull
-    @NonNull
     private double price;
 
-    @NotNull
-    @NonNull
     @OneToOne(
             mappedBy = "product",
             cascade = CascadeType.ALL,
@@ -43,5 +31,56 @@ public class Product {
 
     @ElementCollection
     private Map<String, String> attributes;
+
+    public Product() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public Map<String, String> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, String> attributes) {
+        this.attributes = attributes;
+    }
 }
 

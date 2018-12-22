@@ -1,10 +1,9 @@
 package com.nasibov.productservice.repository;
 
-import com.nasibov.productservice.model.Product;
+import com.nasibov.productservice.model.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-    public Product findBySku(String sku);
+public interface StockRepository extends JpaRepository<Stock, Long> {
 }
